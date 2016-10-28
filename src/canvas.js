@@ -1,21 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 const mapStateToProps = (state) => {
   return {
     ...state
   };
 }
+
 class Pixel extends React.Component{
   constructor(props){
     super(props);
     this.getDiv = (e)=> {
       this.setColor = this.props.action.bind(this, e);
+      console.log(this.props.rowId + "," + this.props.colId);
       this.setColor();
     }
   }
   render() {
     return (
-    <div className="pixel" onClick={this.getDiv}>
+    <div  className="pixel"
+          style={{backgroundColor:this.props.color}}
+          onClick={this.getDiv}
+    >
     </div>
     );
   }
@@ -27,9 +33,11 @@ class PixelRow extends React.Component{
   render() {
     const pixelRow = this.props.row.map((element,index,array) =>{
       return <Pixel rowId = {this.props.rowId}
+                    color = {element}
                     colId={index}
                     action={this.props.action}
-                    key={index}/>
+                    key={index}/
+              >
     });
     return (
       <div className="pixelRow">
@@ -46,7 +54,10 @@ class Color extends React.Component{
   }
   render() {
     return (
-    <div className="color" onClick={this.toggleColor} style={{backgroundColor:this.props.color}}>
+    <div  className="color"
+          onClick={this.toggleColor}
+          style={{backgroundColor:this.props.color}}
+    >
     </div>
     );
   }
@@ -60,7 +71,8 @@ class Pallete extends React.Component{
       if(element !== "selected"){
         return <Color key={index}
                       action={this.props.action}
-                      color={this.props.colors[element]}/>
+                      color={this.props.colors[element]}/
+                >
       }
     });
     return(
@@ -104,7 +116,8 @@ class Canvas extends React.Component {
       return(<PixelRow rowId={index}
                        row={element}
                        key={index}
-                       action={this.getColor}/>);
+                       action={this.getColor}/
+              >);
     });
     return (
       <div className="Canvas">
