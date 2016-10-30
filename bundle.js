@@ -623,9 +623,7 @@
       }) : compose;
 
   const enhancer = composeEnhancers(
-    applyMiddleware(...middleware),
-    // other store enhancers if any
-  );
+    applyMiddleware(...middleware));
   var store = finalCreateStore(rootReducer, enhancer);
 
 
