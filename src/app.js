@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Canvas from './canvas';
 
@@ -11,12 +12,8 @@ const rootReducer = redux.combineReducers({
   color: colorReducer
 });
 
-const finalCreateStore = redux.compose(
-  (window.devToolsExtension) ? window.devToolsExtension : function (x) {return x;}
-);
-const store = finalCreateStore(
-  rootReducer, {}
-);
+  const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 
 
 ReactDom.render(
