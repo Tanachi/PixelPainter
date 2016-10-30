@@ -609,9 +609,7 @@
 	  color: colorReducer
 	});
 
-	var finalCreateStore = redux.compose(window.devToolsExtension ? window.devToolsExtension : function (x) {
-	  return x;
-	});
+	const finalCreateStore = redux.compose(window.devToolsExtension ? window.devToolsExtension : (x)=> x)(createStore);
 	var store = finalCreateStore(rootReducer, {});
 
 	_reactDom2.default.render(_react2.default.createElement(
