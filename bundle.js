@@ -612,7 +612,7 @@
 	var finalCreateStore = redux.compose(window.devToolsExtension ? window.devToolsExtension : function (x) {
 	  return x;
 	});
-  var store = finalCreateStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  var store = finalCreateStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
