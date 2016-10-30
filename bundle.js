@@ -612,20 +612,7 @@
 	var finalCreateStore = redux.compose(window.devToolsExtension ? window.devToolsExtension : function (x) {
 	  return x;
 	});
-
-
-  const composeEnhancers =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify here name, actionsBlacklist, actionsCreators and other options
-      }) : compose;
-
-  const enhancer = composeEnhancers(
-    applyMiddleware(...middleware));
-  var store = finalCreateStore(rootReducer, enhancer);
-
+	var store = finalCreateStore(rootReducer, {});
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
